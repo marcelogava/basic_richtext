@@ -1,0 +1,59 @@
+<div class="editor">
+  <div class="toolbar">
+    <ng-container *ngFor="let command of buttons; let i = index" [ngSwitch]="command">
+      <div *ngSwitchCase="'redo'">
+        <button class="button" (click)="format(command)">	<mat-icon>redo</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'undo'">
+        <button class="button" (click)="format(command)">	<mat-icon>undo</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'bold'">
+        <button class="button" (click)="format(command)"><mat-icon> format_bold</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'italic'">
+        <button class="button" (click)="format(command)"><mat-icon> format_italic</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'underline'">
+        <button class="button" (click)="format(command)"><mat-icon> format_underline</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'insertOrderedList'">
+        <button class="button" (click)="format(command)"><mat-icon> format_list_numbered</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'insertunorderedlist'">
+        <button class="button" (click)="format(command)"><mat-icon> format_list_bulleted</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'justifyleft'">
+        <button class="button" (click)="format(command)"><mat-icon> format_align_left</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'justifycenter'">
+        <button class="button" (click)="format(command)"><mat-icon> format_align_justify</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'justifyright'">
+        <button class="button" (click)="format(command)"><mat-icon> format_align_right</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'fontSize'">
+        <button class="button" mat-button [matMenuTriggerFor]="size"><mat-icon> format_size</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'link'">
+        <button class="button" (click)="addLink()"><mat-icon> insert_link</mat-icon></button>
+      </div>
+      <div *ngSwitchCase="'image'">
+        <label class="button" for="image"><mat-icon> insert_photo</mat-icon></label>
+        <input style="display: none;" type="file" id="image" accept="image/*" (change)="addImage($event)">
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="text-area" contenteditable="true" id="content" #editor (blur)="output()"></div>
+
+</div>
+
+<mat-menu #size="matMenu">
+  <button mat-menu-item (click)="format('fontSize', '1')">10px</button>
+  <button mat-menu-item (click)="format('fontSize', '2')">13px</button>
+  <button mat-menu-item (click)="format('fontSize', '3')">16px</button>
+  <button mat-menu-item (click)="format('fontSize', '4')">18px</button>
+  <button mat-menu-item (click)="format('fontSize', '5')">24px</button>
+  <button mat-menu-item (click)="format('fontSize', '6')">32px</button>
+  <button mat-menu-item (click)="format('fontSize', '7')">48px</button>
+</mat-menu>
